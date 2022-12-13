@@ -5,21 +5,20 @@
  */
 int main(void)
 {
-unsigned long count, i, j, k;
-i = 0;
-j = 1;
-for (count = 0; count < 50; count++)
+int i = 0;
+long int a = 0, b = 1, next;
+while (i < 50)
 {
-k = i + j;
-i = j;
-j = k;
-printf("%lu", k);
-if (count == 49)
+next = a + b;
+a = b;
+b = next;
+printf("%lu", next);
+if (i < 49)
+{
+printf(",");
+}
+i++;
+}
 putchar('\n');
-else
-{
-printf(", ");
-}
 return (0);
-}
 }
