@@ -1,0 +1,1 @@
+more string and array
