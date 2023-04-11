@@ -1,37 +1,29 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_print - print a hash table
- * @ht: hash table
- * Return: nothing
+ * hash_table_print - prints key/value pairs in hash table array order.
+ * @ht: the hash table.
  */
-
 void hash_table_print(const hash_table_t *ht)
-
 {
-	unsigned long int sizeh_table = 0, i = 0;
-	hash_node_t **hash_table_list = NULL, *list = NULL;
-	int flag_coma_space = 0;
+	unsigned long int i, count = 0;
+	hash_node_t *node;
 
 	if (ht == NULL)
 		return;
-	hash_table_list = ht->array;
-	sizeh_table = ht->size;
-
 	printf("{");
-	for (i = 0; i < sizeh_table; i++)
+	for (i = 0; i < ht->size; i++)
 	{
-		list = hash_table_list[i];
-		if (list != NULL)
+		if (ht->array[i] != NULL)
 		{
-			while (list)
+			node = ht->array[i];
+			while (node != NULL)
 			{
-				if (!flag_coma_space)								{
-					printf("'%s': '%s'", list->key, list->value);
-					flag_coma_space = 1;
-				}
-				else
-					printf(", '%s': '%s'", list->key, list->value);														list = list->next;
+				if (count > 0)
+					printf(", ");
+				printf("'%s': '%s'", node->key, node->value);
+				node = node->next;
+				count++;
 			}
 		}
 	}
